@@ -6,5 +6,4 @@ public class ClientMain {
 		Client client = new Client("vingu.online", 25552);
 		client.connect();
 	}
-
 }

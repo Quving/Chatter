@@ -21,7 +21,7 @@ public class ClientManager {
 	}
 
 	public void addClient(ClientUser clientuser) {
-		if (!this.exists(clientuser)) {
+		if (!exists(clientuser)) {
 			_clients.add(clientuser);
 		}
 	}

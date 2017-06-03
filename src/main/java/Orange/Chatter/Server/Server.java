@@ -16,18 +16,19 @@ public class Server {
 
 	public Server() {
 		_idgen = new IdGen();
+		_clientman = new ClientManager();
+		_bcaster = new BroadCaster(_clientman);
 	}
 
 	public void start() {
 		try {
 			_echoServer = new ServerSocket(2222);
-			_clientman = new ClientManager();
-			_bcaster = new BroadCaster(_clientman);
 
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		System.out.println("The server started. To stop it press <CTRL><C>.");
+		System.out.println("The server has started. Waiting for incoming connections. "
+				+ "To stop it press <CTRL><C>.");
 
 		while (true) {
 			try {
@@ -40,8 +41,8 @@ public class Server {
 	}
 
 	public void registerChatClient() {
-		ClientUser cuser = new ClientUser("Client_" + _idgen.getId(), clientSocket);
-		_clientman.addClient(cuser);
-		new ServerThread(clientSocket, "Client_" + _idgen.getId(), _bcaster).start();
+		ClientUser user = new ClientUser("Client_" + _idgen.getId(), clientSocket);
+		_clientman.addClient(user);
+		new ServerThread(user, "Client_" + _idgen.getId(), _bcaster).start();
 	}
 }

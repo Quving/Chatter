@@ -11,12 +11,12 @@ public class BroadCaster {
 		_clientman = clientman;
 	}
 
-	public void broadCast(String message) {
+	public void broadCast(ClientUser clientUser, String message) {
 		PrintStream _os = null;
 		for (ClientUser cuser : _clientman.getAllUsers()) {
 			try {
 				_os = new PrintStream(cuser.getSocket().getOutputStream());
-				_os.println(message);
+				_os.println(clientUser.getId() + ": " + message);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

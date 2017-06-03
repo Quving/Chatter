@@ -2,25 +2,24 @@ package Orange.Chatter.Server;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.Socket;
 import java.util.Scanner;
 
 public class ServerThread extends Thread {
-	private Socket _clientSocket;
 	private Scanner is;
 	private PrintStream _os;
 	private String _line;
 	private final String _id;
 	private BroadCaster _bcaster;
+	private ClientUser _clientUser;
 
-	public ServerThread(Socket clientSocket, String id, BroadCaster bcaster) {
-		_clientSocket = clientSocket;
+	public ServerThread(ClientUser user, String id, BroadCaster bcaster) {
+		_clientUser = user;
 		_id = id;
 		_bcaster = bcaster;
 
 		try {
-			is = new Scanner(_clientSocket.getInputStream());
-			_os = new PrintStream(_clientSocket.getOutputStream());
+			is = new Scanner(_clientUser.getSocket().getInputStream());
+			_os = new PrintStream(_clientUser.getSocket().getOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -32,8 +31,7 @@ public class ServerThread extends Thread {
 		while (true) {
 			if (is.hasNext()) {
 				_line = is.nextLine();
-				_bcaster.broadCast(_line);;
-				_os.println("From server: " + _line);
+				_bcaster.broadCast(_clientUser, _line);
 				System.out.println(_line);
 			}
 		}

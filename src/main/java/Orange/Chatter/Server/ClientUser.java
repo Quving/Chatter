@@ -9,6 +9,7 @@ public class ClientUser {
 
 	public ClientUser(String id, Socket clientSocket) {
 		_clientSocket = clientSocket;
+		_id = id;
 	}
 
 	public Socket getSocket() {
