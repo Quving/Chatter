@@ -20,11 +20,11 @@ public class Client {
 	public void connect() {
 		try {
 			System.out.println("Trying to connect. Host: " + _host + "Port:" + _port);
-			System.out.println("Please wait...");
+			System.out.println("> Please wait...");
 
 			_clientSocket = new Socket(_host, _port);
 
-			System.out.println("Connected!");
+			System.out.println("> Connected!");
 
 		} catch (UnknownHostException e) {
 			System.err.println("Host could'nt be found " + _host);

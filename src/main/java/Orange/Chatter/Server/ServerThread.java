@@ -8,13 +8,11 @@ public class ServerThread extends Thread {
 	private Scanner is;
 	private PrintStream _os;
 	private String _line;
-	private final String _id;
 	private BroadCaster _bcaster;
 	private ClientUser _clientUser;
 
-	public ServerThread(ClientUser user, String id, BroadCaster bcaster) {
+	public ServerThread(ClientUser user, BroadCaster bcaster) {
 		_clientUser = user;
-		_id = id;
 		_bcaster = bcaster;
 
 		try {
@@ -23,7 +21,7 @@ public class ServerThread extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		_os.print("Welcome " + _id + "!\n");
+		_os.print("Welcome " + _clientUser.getUniqueIdentifier() + "!\n");
 	}
 
 	public void run() {

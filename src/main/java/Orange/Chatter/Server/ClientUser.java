@@ -4,12 +4,13 @@ import java.net.Socket;
 
 public class ClientUser {
 
+	private int _id;
+	private String _name;
 	private Socket _clientSocket;
-	private String _id;
 
-	public ClientUser(String id, Socket clientSocket) {
+	public ClientUser(Socket clientSocket) {
+		_name = "Client_";
 		_clientSocket = clientSocket;
-		_id = id;
 	}
 
 	public Socket getSocket() {
@@ -17,6 +18,18 @@ public class ClientUser {
 	}
 
 	public String getId() {
+		return _name;
+	}
+
+	public void setId(int id) {
+		_id = id;
+	}
+	
+	public String getUniqueIdentifier() {
+		return _name + _id;
+	}
+
+	public int getId(int id) {
 		return _id;
 	}
 

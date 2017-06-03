@@ -22,6 +22,7 @@ public class ClientManager {
 
 	public void addClient(ClientUser clientuser) {
 		if (!exists(clientuser)) {
+			clientuser.setId(_clients.size());
 			_clients.add(clientuser);
 		}
 	}

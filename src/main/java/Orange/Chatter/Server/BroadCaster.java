@@ -16,7 +16,7 @@ public class BroadCaster {
 		for (ClientUser cuser : _clientman.getAllUsers()) {
 			try {
 				_os = new PrintStream(cuser.getSocket().getOutputStream());
-				_os.println(clientUser.getId() + ": " + message);
+				_os.println(clientUser.getUniqueIdentifier() + ":\t" + message);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
