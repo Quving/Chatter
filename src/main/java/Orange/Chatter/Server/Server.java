@@ -8,17 +8,22 @@ import Orange.Chatter.IdGen;
 
 public class Server {
 
-	private ServerSocket echoServer = null;
+	private ServerSocket _echoServer = null;
 	private Socket clientSocket = null;
-	private IdGen idgen;
+	private IdGen _idgen;
+	private BroadCaster _bcaster;
+	private ClientManager _clientman;
 
 	public Server() {
-		idgen = new IdGen();
+		_idgen = new IdGen();
 	}
 
 	public void start() {
 		try {
-			echoServer = new ServerSocket(2222);
+			_echoServer = new ServerSocket(2222);
+			_clientman = new ClientManager();
+			_bcaster = new BroadCaster(_clientman);
+
 		} catch (IOException e) {
 			System.out.println(e);
 		}
@@ -26,11 +31,17 @@ public class Server {
 
 		while (true) {
 			try {
-				clientSocket = echoServer.accept();
+				clientSocket = _echoServer.accept();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			new ServerThread(clientSocket, "Client_" + idgen.getId()).start();
+			registerChatClient();
 		}
+	}
+
+	public void registerChatClient() {
+		ClientUser cuser = new ClientUser("Client_" + _idgen.getId(), clientSocket);
+		_clientman.addClient(cuser);
+		new ServerThread(clientSocket, "Client_" + _idgen.getId(), _bcaster).start();
 	}
 }

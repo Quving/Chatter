@@ -1,21 +1,14 @@
 package Orange.Chatter.Client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
 
 public class Client {
 
 	private int _port;
 	private String _host;
-	private Scanner _is = null;
-	private PrintStream _os = null;
-	private boolean _closed = false;
 	private Socket _clientSocket = null;
-	private BufferedReader _inputLine = null;
 
 	public Client(String host, int port) {
 

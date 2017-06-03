@@ -11,10 +11,12 @@ public class ServerThread extends Thread {
 	private PrintStream _os;
 	private String _line;
 	private final String _id;
+	private BroadCaster _bcaster;
 
-	public ServerThread(Socket clientSocket, String id) {
+	public ServerThread(Socket clientSocket, String id, BroadCaster bcaster) {
 		_clientSocket = clientSocket;
 		_id = id;
+		_bcaster = bcaster;
 
 		try {
 			is = new Scanner(_clientSocket.getInputStream());
@@ -26,10 +28,11 @@ public class ServerThread extends Thread {
 	}
 
 	public void run() {
-  
+
 		while (true) {
 			if (is.hasNext()) {
 				_line = is.nextLine();
+				_bcaster.broadCast(_line);;
 				_os.println("From server: " + _line);
 				System.out.println(_line);
 			}
