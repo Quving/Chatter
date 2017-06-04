@@ -38,6 +38,7 @@ public class Server {
 
 	public void registerChatClient() {
 		ClientUser user = new ClientUser(clientSocket);
+		user.setId(_clientman.generateId());
 		_clientman.addClient(user);
 		new ServerThread(user, _bcaster).start();
 	}

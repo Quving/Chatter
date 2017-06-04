@@ -13,7 +13,7 @@ public class ClientManager {
 
 	public boolean exists(ClientUser clientuser) {
 		for (ClientUser cuser : _clients) {
-			if (cuser.getId().equals(clientuser.getId())) {
+			if (cuser.getUniqueIdentifier().equals(clientuser.getUniqueIdentifier())) {
 				return true;
 			}
 		}
@@ -22,12 +22,16 @@ public class ClientManager {
 
 	public void addClient(ClientUser clientuser) {
 		if (!exists(clientuser)) {
-			clientuser.setId(_clients.size());
+			System.out.println(_clients.size());
 			_clients.add(clientuser);
 		}
 	}
 
 	public Set<ClientUser> getAllUsers() {
 		return _clients;
+	}
+	
+	public int generateId() {
+		return _clients.size();
 	}
 }

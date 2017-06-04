@@ -30,7 +30,7 @@ public class ServerThread extends Thread {
 			if (is.hasNext()) {
 				_line = is.nextLine();
 				_bcaster.broadCast(_clientUser, _line);
-				System.out.println(_line);
+				System.out.println(_clientUser.getUniqueIdentifier() + ": " +_line);
 			}
 		}
 	}

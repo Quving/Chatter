@@ -1,4 +1,6 @@
-package Orange.Chatter.Server;
+package Orange.Chatter.Launcher;
+
+import Orange.Chatter.Server.Server;
 
 public class ServerLauncher {
 

@@ -1,3 +1,11 @@
-/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/ServerMain.java
-/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Server.java
-/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Client.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Server/Server.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Server/ClientUser.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Launcher/ServerLauncher.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Server/ClientManager.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Server/ServerThread.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/ChatterGui.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Client/ClientListenerThread.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Client/ClientWriterThread.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Launcher/ClientLauncher.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Server/BroadCaster.java
+/home/vinh/workspace/eclipse/Chatter/src/main/java/Orange/Chatter/Client/Client.java

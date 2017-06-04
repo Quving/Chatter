@@ -17,19 +17,19 @@ public class ClientUser {
 		return _clientSocket;
 	}
 
-	public String getId() {
+	public String getName() {
 		return _name;
 	}
 
 	public void setId(int id) {
 		_id = id;
 	}
-	
+
 	public String getUniqueIdentifier() {
 		return _name + _id;
 	}
 
-	public int getId(int id) {
+	public int getId() {
 		return _id;
 	}
 

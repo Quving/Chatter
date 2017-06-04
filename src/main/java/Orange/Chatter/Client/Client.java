@@ -11,10 +11,8 @@ public class Client {
 	private Socket _clientSocket = null;
 
 	public Client(String host, int port) {
-
 		_host = host;
 		_port = port;
-
 	}
 
 	public void connect() {
@@ -36,8 +34,6 @@ public class Client {
 		if (_clientSocket != null) {
 			new ClientListenerThread(_clientSocket).start();
 			new ClientWriterThread(_clientSocket).start();
-
 		}
 	}
-
 }
