@@ -17,12 +17,13 @@ public class Client {
 	private Socket _clientSocket = null;
 	private ChatterGui _chattergui;
 	private StyledDocument _doc;
+	private ClientListenerThread _clientlistener;
+	private ClientWriter _clientwriter;
 
 	public Client(ChatterGui chattergui) {
 		_chattergui = chattergui;
 		_doc = _chattergui.get_doc();
 		connect("vingu.online", 25552);
-
 	}
 
 	public void connect(String host, int port) {
@@ -41,8 +42,9 @@ public class Client {
 		}
 
 		if (_clientSocket != null) {
-			new ClientListenerThread(_clientSocket, this).start();
-			new ClientWriter(_clientSocket, this);
+			_clientlistener = new ClientListenerThread(_clientSocket, this);
+			_clientlistener.start();
+			_clientwriter = new ClientWriter(_clientSocket, this);
 		}
 	}
 
@@ -58,12 +60,10 @@ public class Client {
 			StyleConstants.setForeground(keyWord, new Color(0, 102, 255));
 			StyleConstants.setBold(keyWord, true);
 		} else {
-			StyleConstants.setForeground(keyWord, Color.GREEN);
+			StyleConstants.setForeground(keyWord, new Color(0, 0, 102));
 		}
 
-		try
-
-		{
+		try {
 			_doc.insertString(_doc.getLength(), text.trim() + "\n", keyWord);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
@@ -71,8 +71,6 @@ public class Client {
 	}
 
 	public ChatterGui getChatterGui() {
-
 		return _chattergui;
 	}
-
 }

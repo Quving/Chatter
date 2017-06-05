@@ -42,8 +42,6 @@ public class ClientWriter {
 	private void sendToServer() {
 		String text = _chattergui.get_chatfield().getText().trim();
 		_os.println(text);
-
-		// Clear
 		_chattergui.get_chatfield().setText("");
 	}
 }

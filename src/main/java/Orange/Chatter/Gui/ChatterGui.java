@@ -71,6 +71,10 @@ public class ChatterGui {
 		_frame.setVisible(true);
 	}
 
+	class ChatterGuiLoginPanel extends JPanel {
+		
+	}
+
 	public JFrame get_frame() {
 		return _frame;
 	}
