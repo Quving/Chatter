@@ -26,6 +26,7 @@ public class Client {
 		_chattergui = chattergui;
 		_doc = _chattergui.get_chattergui()._doc;
 		_connect = new Connect(this);
+		_connect.getClass();
 	}
 
 	public void connect(String host, int port) {
@@ -47,6 +48,7 @@ public class Client {
 			_clientlistener = new ClientListenerThread(_clientSocket, this);
 			_clientlistener.start();
 			_clientwriter = new ClientWriter(_clientSocket, this);
+			_clientwriter.getClass();
 		}
 	}
 

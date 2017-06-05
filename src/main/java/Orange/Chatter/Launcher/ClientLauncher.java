@@ -8,5 +8,6 @@ public class ClientLauncher {
 	public static void main(String[] args) {
 		ChatterGui chatterGui = new ChatterGui();
 		Client client = new Client(chatterGui);
+		client.getClass();
 	}
 }

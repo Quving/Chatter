@@ -1,6 +1,5 @@
 package Orange.Chatter.Gui;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,7 +34,7 @@ public class Connect {
 		String host = _panel._textfieldhost.getText().trim();
 		int port = Integer.parseInt(_panel._textfieldport.getText().trim());
 		String nick = _panel._textfieldnick.getText().trim();
-
+		nick.trim();
 		JFrame frame = _client.getChatterGui().get_frame();
 		frame.remove(_panel);
 		frame.add(_client.getChatterGui().get_chattergui());

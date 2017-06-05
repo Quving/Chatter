@@ -24,7 +24,7 @@ public class ClientManager {
 		if (!exists(clientuser)) {
 			System.out.println(_clients.size());
 			_clients.add(clientuser);
-			_bcaster.broadCast(clientuser, clientuser.getUniqueIdentifier() + " has joined.");
+			_bcaster.notifyAll("»» " + clientuser.getUniqueIdentifier() + " has joined.");
 		}
 	}
 
