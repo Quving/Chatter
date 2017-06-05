@@ -8,12 +8,23 @@ public class Server {
 
 	private BroadCaster _bcaster;
 	private ClientManager _clientman;
+	
+	public BroadCaster get_bcaster() {
+		return _bcaster;
+	}
+
+	public ClientManager get_clientman() {
+		return _clientman;
+	}
+
 	private Socket clientSocket = null;
+	
 	private ServerSocket _echoServer = null;
 
 	public Server() {
 		_clientman = new ClientManager();
 		_bcaster = new BroadCaster(_clientman);
+		new ClientStatusChecker(this).start();
 	}
 
 	public void start() {

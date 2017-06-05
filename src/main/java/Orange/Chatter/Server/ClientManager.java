@@ -11,20 +11,20 @@ public class ClientManager {
 		_clients = new HashSet<ClientUser>();
 	}
 
-	public boolean exists(ClientUser clientuser) {
-		for (ClientUser cuser : _clients) {
-			if (cuser.getUniqueIdentifier().equals(clientuser.getUniqueIdentifier())) {
+	public boolean exists(ClientUser cuser) {
+		for (ClientUser c : _clients) {
+			if (c.getUniqueIdentifier().equals(cuser.getUniqueIdentifier())) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public void addClient(ClientUser clientuser, BroadCaster _bcaster) {
-		if (!exists(clientuser)) {
+	public void addClient(ClientUser cuser, BroadCaster _bcaster) {
+		if (!exists(cuser)) {
 			System.out.println(_clients.size());
-			_clients.add(clientuser);
-			_bcaster.notifyAll("»» " + clientuser.getUniqueIdentifier() + " has joined.");
+			_clients.add(cuser);
+			_bcaster.notifyAll("»» " + cuser.getUniqueIdentifier() + " has joined.");
 		}
 	}
 
@@ -35,4 +35,12 @@ public class ClientManager {
 	public int generateId() {
 		return _clients.size();
 	}
+
+	public void removeClientUser(ClientUser cuser, BroadCaster _bcaster) {
+		if (exists(cuser)) {
+			_clients.remove(cuser);
+			_bcaster.notifyAll("»» " + cuser.getUniqueIdentifier() + " has left.");
+		}
+	}
+
 }
