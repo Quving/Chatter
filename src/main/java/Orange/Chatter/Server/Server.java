@@ -6,10 +6,10 @@ import java.net.Socket;
 
 public class Server {
 
-	private ServerSocket _echoServer = null;
-	private Socket clientSocket = null;
 	private BroadCaster _bcaster;
 	private ClientManager _clientman;
+	private Socket clientSocket = null;
+	private ServerSocket _echoServer = null;
 
 	public Server() {
 		_clientman = new ClientManager();
@@ -39,7 +39,7 @@ public class Server {
 	public void registerChatClient() {
 		ClientUser user = new ClientUser(clientSocket);
 		user.setId(_clientman.generateId());
-		_clientman.addClient(user);
+		_clientman.addClient(user, _bcaster);
 		new ServerThread(user, _bcaster).start();
 	}
 }

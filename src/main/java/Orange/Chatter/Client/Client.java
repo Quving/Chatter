@@ -11,19 +11,21 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import Orange.Chatter.Gui.ChatterGui;
+import Orange.Chatter.Gui.Connect;
 
 public class Client {
 
-	private Socket _clientSocket = null;
-	private ChatterGui _chattergui;
+	private Connect _connect;
 	private StyledDocument _doc;
-	private ClientListenerThread _clientlistener;
+	private ChatterGui _chattergui;
+	private Socket _clientSocket = null;
 	private ClientWriter _clientwriter;
+	private ClientListenerThread _clientlistener;
 
 	public Client(ChatterGui chattergui) {
 		_chattergui = chattergui;
-		_doc = _chattergui.get_chattergui().get_doc();
-		connect("vingu.online", 25552);
+		_doc = _chattergui.get_chattergui()._doc;
+		_connect = new Connect(this);
 	}
 
 	public void connect(String host, int port) {

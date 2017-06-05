@@ -20,17 +20,18 @@ public class ClientManager {
 		return false;
 	}
 
-	public void addClient(ClientUser clientuser) {
+	public void addClient(ClientUser clientuser, BroadCaster _bcaster) {
 		if (!exists(clientuser)) {
 			System.out.println(_clients.size());
 			_clients.add(clientuser);
+			_bcaster.broadCast(clientuser, clientuser.getUniqueIdentifier() + " has joined.");
 		}
 	}
 
 	public Set<ClientUser> getAllUsers() {
 		return _clients;
 	}
-	
+
 	public int generateId() {
 		return _clients.size();
 	}
