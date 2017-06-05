@@ -4,36 +4,49 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import Orange.Chatter.Gui.ChatterGuiController;
+import javax.swing.JTextArea;
+
+import Orange.Chatter.Gui.ChatterGui;
 
 public class Client {
 
 	private Socket _clientSocket = null;
-	private ChatterGuiController _chatterguicontroller;
+	private ChatterGui _chattergui;
+	private JTextArea _display;
 
-	public Client(ChatterGuiController chatterguicontroller) {
-		_chatterguicontroller = chatterguicontroller;
+	public Client(ChatterGui chattergui) {
+		_chattergui = chattergui;
+		_display = _chattergui.get_display();
+		this.connect("vingu.online", 25552);
+
 	}
 
 	public void connect(String host, int port) {
 		try {
-			System.out.println("Trying to connect. Host: " + host + "Port:" + port);
-			System.out.println("> Please wait...");
-
+			printToDisplay("Trying to connect to '" + host + "' on port:" + port);
+			printToDisplay("> Please wait...");
 			_clientSocket = new Socket(host, port);
-
-			System.out.println("> Connected!");
+			printToDisplay("> Connected!");
 
 		} catch (UnknownHostException e) {
-			System.err.println("Host could'nt be found " + host);
+			printToDisplay("Host could'nt be found " + host);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println("Couldn't get I/O for the connection to the host " + host);
+			printToDisplay("Couldn't get I/O for the connection to the host " + host);
 		}
 
 		if (_clientSocket != null) {
-			new ClientListenerThread(_clientSocket, _chatterguicontroller).start();
-			new ClientWriterThread(_clientSocket, _chatterguicontroller).start();
+			new ClientListenerThread(_clientSocket, this).start();
+			new ClientWriter(_clientSocket, this);
 		}
 	}
+
+	public void printToDisplay(String text) {
+		_display.append(text.trim() + "\n");
+	}
+
+	public ChatterGui getChatterGui() {
+		return _chattergui;
+	}
+
 }

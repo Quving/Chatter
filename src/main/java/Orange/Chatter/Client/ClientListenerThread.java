@@ -4,16 +4,15 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-import Orange.Chatter.Gui.ChatterGuiController;
 
 public class ClientListenerThread extends Thread {
-	private Socket _clientSocket;
 	private Scanner _is;
-	private ChatterGuiController _chatterguicontroller;
+	private Client _client;
+	private Socket _clientSocket;
 
-	public ClientListenerThread(Socket clientSocket, ChatterGuiController chatterguicontroller) {
+	public ClientListenerThread(Socket clientSocket, Client client) {
+		_client = client;
 		_clientSocket = clientSocket;
-		_chatterguicontroller = chatterguicontroller;
 
 		try {
 			_is = new Scanner(_clientSocket.getInputStream());
@@ -28,7 +27,7 @@ public class ClientListenerThread extends Thread {
 		while (true)
 			if (_is.hasNextLine()) {
 				responseLine = _is.nextLine();
-				System.out.println(responseLine);
+				_client.printToDisplay(responseLine);
 
 				if (responseLine.indexOf("*** Bye") != -1)
 					break;

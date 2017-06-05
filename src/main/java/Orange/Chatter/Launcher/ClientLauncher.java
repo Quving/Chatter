@@ -2,7 +2,6 @@ package Orange.Chatter.Launcher;
 
 import Orange.Chatter.Client.Client;
 import Orange.Chatter.Gui.ChatterGui;
-import Orange.Chatter.Gui.ChatterGuiController;
 
 public class ClientLauncher {
 
@@ -15,10 +14,9 @@ public class ClientLauncher {
 		// client = new Client("vingu.online", 25552);
 		// }
 		// client.connect();
-		
+
 		ChatterGui chatterGui = new ChatterGui();
-		ChatterGuiController guiController = new ChatterGuiController(chatterGui);
-		Client client;
+		Client client = new Client(chatterGui);
 
 	}
 }
