@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
+import Orange.Chatter.Gui.ChatterGuiController;
+
 public class ClientListenerThread extends Thread {
 	private Socket _clientSocket;
 	private Scanner _is;
+	private ChatterGuiController _chatterguicontroller;
 
-	public ClientListenerThread(Socket clientSocket) {
+	public ClientListenerThread(Socket clientSocket, ChatterGuiController chatterguicontroller) {
 		_clientSocket = clientSocket;
+		_chatterguicontroller = chatterguicontroller;
 
 		try {
 			_is = new Scanner(_clientSocket.getInputStream());

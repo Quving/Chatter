@@ -4,36 +4,36 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import Orange.Chatter.Gui.ChatterGuiController;
+
 public class Client {
 
-	private int _port;
-	private String _host;
 	private Socket _clientSocket = null;
+	private ChatterGuiController _chatterguicontroller;
 
-	public Client(String host, int port) {
-		_host = host;
-		_port = port;
+	public Client(ChatterGuiController chatterguicontroller) {
+		_chatterguicontroller = chatterguicontroller;
 	}
 
-	public void connect() {
+	public void connect(String host, int port) {
 		try {
-			System.out.println("Trying to connect. Host: " + _host + "Port:" + _port);
+			System.out.println("Trying to connect. Host: " + host + "Port:" + port);
 			System.out.println("> Please wait...");
 
-			_clientSocket = new Socket(_host, _port);
+			_clientSocket = new Socket(host, port);
 
 			System.out.println("> Connected!");
 
 		} catch (UnknownHostException e) {
-			System.err.println("Host could'nt be found " + _host);
+			System.err.println("Host could'nt be found " + host);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println("Couldn't get I/O for the connection to the host " + _host);
+			System.err.println("Couldn't get I/O for the connection to the host " + host);
 		}
 
 		if (_clientSocket != null) {
-			new ClientListenerThread(_clientSocket).start();
-			new ClientWriterThread(_clientSocket).start();
+			new ClientListenerThread(_clientSocket, _chatterguicontroller).start();
+			new ClientWriterThread(_clientSocket, _chatterguicontroller).start();
 		}
 	}
 }

@@ -6,13 +6,17 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
+import Orange.Chatter.Gui.ChatterGuiController;
+
 public class ClientWriterThread extends Thread {
 	private Socket _clientSocket;
 	private PrintStream _os;
 	private BufferedReader _input;
+	private ChatterGuiController _chatterguicontroller;
 
-	public ClientWriterThread(Socket clientSocket) {
+	public ClientWriterThread(Socket clientSocket, ChatterGuiController chatterguicontroller) {
 		_clientSocket = clientSocket;
+		_chatterguicontroller = chatterguicontroller;
 
 		try {
 			_os = new PrintStream(_clientSocket.getOutputStream());
