@@ -22,7 +22,7 @@ public class Client {
 
 	public Client(ChatterGui chattergui) {
 		_chattergui = chattergui;
-		_doc = _chattergui.get_doc();
+		_doc = _chattergui.get_chattergui().get_doc();
 		connect("vingu.online", 25552);
 	}
 

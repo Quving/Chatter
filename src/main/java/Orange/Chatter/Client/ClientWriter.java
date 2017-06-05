@@ -17,13 +17,13 @@ public class ClientWriter {
 		_clientSocket = clientSocket;
 		_chattergui = client.getChatterGui();
 
-		_chattergui.get_send().addActionListener(new ActionListener() {
+		_chattergui.get_chattergui().get_send().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ClientWriter.this.sendToServer();
 			}
 		});
 
-		_chattergui.get_chatfield().addActionListener(new ActionListener() {
+		_chattergui.get_chattergui().get_chatfield().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				ClientWriter.this.sendToServer();
@@ -40,8 +40,8 @@ public class ClientWriter {
 	}
 
 	private void sendToServer() {
-		String text = _chattergui.get_chatfield().getText().trim();
+		String text = _chattergui.get_chattergui().get_chatfield().getText().trim();
 		_os.println(text);
-		_chattergui.get_chatfield().setText("");
+		_chattergui.get_chattergui().get_chatfield().setText("");
 	}
 }
