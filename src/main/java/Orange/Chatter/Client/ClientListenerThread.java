@@ -27,7 +27,7 @@ public class ClientListenerThread extends Thread {
 		while (true)
 			if (_is.hasNextLine()) {
 				responseLine = _is.nextLine();
-				_client.printToDisplay(responseLine);
+				_client.printToDisplay(responseLine, "server");
 
 				if (responseLine.indexOf("*** Bye") != -1)
 					break;

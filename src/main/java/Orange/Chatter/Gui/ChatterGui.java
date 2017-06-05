@@ -1,4 +1,6 @@
 package Orange.Chatter.Gui;
+
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -6,23 +8,25 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.StyledDocument;
 
 public class ChatterGui {
 	private JFrame _frame;
 	private JPanel _panel;
 	private JButton _send;
-	private JTextArea _display;
+	private JTextPane _display;
 	private JTextField _chatfield;
 	private JScrollPane _scrollpane;
+	private StyledDocument _doc;
 
 	public ChatterGui() {
 		_frame = new JFrame("ChatterClient");
-		_frame.setResizable(false);
+		_frame.setSize(new Dimension(480, 400));
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		_panel = new JPanel(new GridBagLayout());
@@ -32,11 +36,13 @@ public class ChatterGui {
 
 		_frame.add(_panel);
 
-		// Textfield to show log.
-		_display = new JTextArea(16, 32);
+		// TextPane to show log.
+		_display = new JTextPane();
 		_display.setEditable(false);
-		_display.setLineWrap(true);
-		_display.setWrapStyleWord(true);
+		_display.setPreferredSize(_frame.getSize());
+		_doc = _display.getStyledDocument();
+
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
 
@@ -46,7 +52,10 @@ public class ChatterGui {
 		_panel.add(_scrollpane, c);
 
 		// Chatfield
-		_chatfield = new JTextField(32);
+		_chatfield = new JTextField();
+		_chatfield.requestFocusInWindow();
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 1.0;
 		c.gridx = 0;
 		c.gridy = 1;
 		_panel.add(_chatfield, c);
@@ -74,7 +83,7 @@ public class ChatterGui {
 		return _send;
 	}
 
-	public JTextArea get_display() {
+	public JTextPane get_display() {
 		return _display;
 	}
 
@@ -86,8 +95,7 @@ public class ChatterGui {
 		return _scrollpane;
 	}
 
-	public static void main(String[] args) {
-		new ChatterGui();
+	public StyledDocument get_doc() {
+		return _doc;
 	}
-
 }

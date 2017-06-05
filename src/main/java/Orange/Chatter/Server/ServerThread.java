@@ -25,12 +25,11 @@ public class ServerThread extends Thread {
 	}
 
 	public void run() {
-
 		while (true) {
 			if (is.hasNext()) {
 				_line = is.nextLine();
 				_bcaster.broadCast(_clientUser, _line);
-				System.out.println(_clientUser.getUniqueIdentifier() + ": " +_line);
+				System.out.println(_clientUser.getUniqueIdentifier() + ": " + _line);
 			}
 		}
 	}
