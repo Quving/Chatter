@@ -37,6 +37,7 @@ public class ChatterGui {
 	public ChatterGui() {
 		_frame = new JFrame("ChatterClient");
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_frame.setResizable(false);
 		_chatterguilogin = new ChatterGuiLoginPanel();
 		_chattergui = new ChatterGuiPanel();
 
@@ -136,11 +137,13 @@ public class ChatterGui {
 			// ScrollPanel
 			_scrollpane = new JScrollPane(_display);
 			_scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			_scrollpane.setAutoscrolls(true);
 			ChatterGuiPanel.this.add(_scrollpane, c);
 
 			// Chatfield
 			_chatfield = new JTextField();
 			_chatfield.requestFocusInWindow();
+			_chatfield.setAutoscrolls(true);
 			c.weighty = 0;
 			c.gridx = 0;
 			c.gridy = 1;

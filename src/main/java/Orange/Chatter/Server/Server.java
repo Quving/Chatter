@@ -34,8 +34,7 @@ public class Server {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		System.out
-				.println("The server has started. Waiting for incoming connections. " + "To stop it press <CTRL><C>.");
+		System.out.println("The server has started. Waiting for incoming connections. " + "To stop it press <CTRL><C>.");
 
 		while (true) {
 			try {

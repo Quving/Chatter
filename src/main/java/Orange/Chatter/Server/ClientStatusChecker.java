@@ -16,14 +16,23 @@ public class ClientStatusChecker extends Thread {
 
 	public void run() {
 		while (true) {
-			System.out.println(_clientman.getAllUsers().size());
 			Set<ClientUser> list = _clientman.getAllUsers();
 			for (ClientUser cuser : list) {
-				System.out.println("Check status for " + cuser.getUniqueIdentifier());
+				System.out.println("Check status for " + cuser.getUniqueIdentifier() + cuser.getSocket().toString());
 				if (!cuser.getSocket().isConnected()) {
+					System.out.println(cuser.getUniqueIdentifier() + " is off. ");
 					_clientman.removeClientUser(cuser, _bcaster);
 				} else {
-					// Display. Todo.
+				}
+
+				if (!cuser.getSocket().isBound()) {
+					System.out.println(cuser.getUniqueIdentifier() + " is off.1 ");
+				} else {
+				}
+
+				if (cuser.getSocket().isInputShutdown() || cuser.getSocket().isOutputShutdown()) {
+					System.out.println(cuser.getUniqueIdentifier() + " is off.2 ");
+				} else {
 				}
 			}
 			// Sleep to be able to synchronize.

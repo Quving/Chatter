@@ -41,7 +41,7 @@ public class Client {
 			printToDisplay("Host couldn't be found " + host, "system");
 		} catch (IOException e) {
 			e.printStackTrace();
-			printToDisplay("Couldn't get I/O for the connection to the host " + host, "system");
+			printToDisplay("Couldn't get I/O for the connection to the host " + host, "systemerror");
 		}
 
 		if (_clientSocket != null) {
@@ -60,6 +60,11 @@ public class Client {
 		if (target.equals("system")) {
 			StyleConstants.setForeground(keyWord, new Color(0, 153, 51));
 			StyleConstants.setBold(keyWord, true);
+
+		} else if (target.equals("systemerror")) {
+			StyleConstants.setForeground(keyWord, new Color(204, 0, 0));
+			StyleConstants.setBold(keyWord, true);
+
 		} else if (target.equals("server")) {
 			StyleConstants.setForeground(keyWord, new Color(0, 102, 255));
 			StyleConstants.setBold(keyWord, true);
